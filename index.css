@@ -1,0 +1,1010 @@
+:root {
+  --primary-color: #007bff;
+  --primary-hover-color: #0056b3;
+  --background-color: #f4f7fa;
+  --surface-color: #ffffff;
+  --text-color: #333;
+  --text-secondary-color: #666;
+  --border-color: #e0e0e0;
+  --sidebar-bg: #2c3e50;
+  --sidebar-text: #ecf0f1;
+  --sidebar-active-bg: #34495e;
+  --sidebar-hover-bg: #46627f;
+  --danger-color: #dc3545;
+  --danger-hover-color: #c82333;
+
+  --font-family: 'Inter', sans-serif;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.2s ease;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  flex-shrink: 0;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.header-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.sidebar-header {
+  padding: 0 1.5rem 1rem;
+  border-bottom: 1px solid var(--sidebar-active-bg);
+}
+
+.sidebar-header h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.sidebar-list {
+  list-style: none;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.sidebar-item {
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), border-left-color var(--transition-speed);
+  border-left: 4px solid transparent;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-item:hover {
+  background-color: var(--sidebar-hover-bg);
+}
+
+.sidebar-item.active {
+  background-color: var(--sidebar-active-bg);
+  border-left-color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.welcome-message {
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.welcome-message {
+    text-align: center;
+}
+.welcome-message h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+.welcome-message p {
+    font-size: 1.1rem;
+    color: var(--text-secondary-color);
+}
+
+
+/* Generic Button */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.button-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: var(--primary-hover-color);
+  border-color: var(--primary-hover-color);
+}
+
+.button-secondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.button-secondary:hover {
+  background-color: #e7f3ff; /* A very light blue */
+  border-color: var(--primary-hover-color);
+  color: var(--primary-hover-color);
+}
+
+.button-danger {
+    background-color: transparent;
+    color: var(--danger-color);
+    border: 1px solid var(--danger-color);
+}
+.button-danger:hover {
+    background-color: var(--danger-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.button-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.875rem;
+}
+.button-xs {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+    border-radius: 6px;
+}
+
+
+/* Modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.modal-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.modal-close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--text-secondary-color);
+    padding: 0.5rem;
+    margin: -0.5rem -0.5rem -0.5rem auto;
+    border-radius: 50%;
+    transition: background-color var(--transition-speed);
+}
+
+.modal-close-button:hover {
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* Report Modal Specifics */
+.report-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-left: auto;
+    padding-left: 1.5rem;
+}
+
+.report-view-switcher {
+    display: inline-flex;
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+    padding: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.report-view-switcher .button {
+    background-color: transparent;
+    border: none;
+    color: var(--text-secondary-color);
+    transform: none;
+}
+.report-view-switcher .button:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+.report-view-switcher .button.active {
+    background-color: var(--surface-color);
+    color: var(--primary-color);
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 6px;
+}
+
+/* Report Content Styles */
+.report-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed var(--border-color);
+}
+.report-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.report-section h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary-color); }
+.report-section h4 { font-size: 1.2rem; margin-bottom: 1rem; margin-top: 1.5rem; }
+.report-section h5 { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-secondary-color); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+.report-section h6 { font-size: 0.9rem; font-weight: 600; margin-top: 1rem; }
+.report-section ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+.report-section li {
+    margin-bottom: 0.25rem;
+}
+
+.report-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.report-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.report-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary-color);
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+}
+
+.report-value {
+    font-size: 1rem;
+    background-color: var(--background-color);
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.report-value-full {
+    grid-column: 1 / -1;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Report Table Styles */
+.report-table-wrapper {
+    overflow-x: auto;
+    max-height: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.report-table th,
+.report-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.report-table tr:last-child td {
+    border-bottom: none;
+}
+
+.report-table th {
+    background-color: var(--background-color);
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.report-table tbody tr:hover {
+    background-color: #f0f6ff;
+}
+
+/* Schema Modal */
+.schema-modal {
+    max-width: 1400px; /* Wider for tables */
+    width: 95%;
+}
+
+.schema-modal .modal-body > p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: var(--text-secondary-color);
+}
+
+.relational-schema-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.relational-schema-table th,
+.relational-schema-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: top;
+}
+
+.relational-schema-table tr:last-child td {
+    border-bottom: none;
+}
+
+.relational-schema-table thead {
+    background-color: var(--background-color);
+}
+
+.relational-schema-table th {
+    font-weight: 600;
+}
+
+.relational-schema-table tbody tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+.relational-schema-table em {
+    font-style: italic;
+    color: var(--text-secondary-color);
+    font-size: 0.8rem;
+}
+
+.json-value code {
+    background-color: #eef2f5;
+    color: #384252;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 0.85em;
+    word-break: break-all;
+    display: inline-block;
+    max-width: 100%;
+}
+
+/* About Modal */
+.about-modal {
+    max-width: 600px;
+    width: 90%;
+}
+
+.about-content h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.about-content h4:first-of-type {
+    margin-top: 0;
+}
+
+.about-content p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary-color);
+    line-height: 1.7;
+}
+
+.about-content hr {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 1.5rem 0;
+}
+
+.about-content .text-center {
+    text-align: center;
+}
+
+/* --- PROJECT EDITOR STYLES --- */
+
+.project-editor {
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.project-editor h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.project-header-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.section-header {
+    /* This is now a flex container for the collapse button and title */
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+.section-header h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0; /* Reset margin on h3 */
+}
+.section-header:first-of-type {
+    margin-top: 1.5rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.25rem;
+}
+
+.form-grid-full {
+    grid-column: 1 / -1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;
+    font-family: var(--font-family);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: #fff;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+    color: var(--text-color);
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Date picker visual enhancement */
+.date-input-wrapper {
+    position: relative;
+}
+
+.date-input-wrapper .date-input-icon {
+    position: absolute;
+    right: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--text-secondary-color);
+}
+
+/* Make the native picker control transparent and cover the input,
+   so clicking our icon area still opens the picker. This works
+   on WebKit-based browsers. */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: transparent;
+    cursor: pointer;
+}
+
+
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    padding-top: 0.5rem;
+}
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* Street & Segment & Service Hierarchy */
+.street-section {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-top: 2rem;
+    padding: 1.5rem;
+}
+
+.street-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+}
+.street-header .form-group {
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+.street-header > .town-street-input-container {
+    flex-grow: 1;
+}
+.street-header-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.segment-input-group,
+.service-input-group,
+.meter-input-group {
+    border: 1px solid #d1d9e2;
+    border-radius: var(--border-radius);
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+    background-color: var(--surface-color);
+}
+
+.segment-input-group > .form-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.group-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.group-title-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sub-header {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    grid-column: 1 / -1;
+}
+
+.button-group {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.service-input-group {
+    margin-left: 1rem;
+    background-color: #fdfdff;
+    border-left: 3px solid var(--primary-color);
+}
+.meter-input-group {
+    margin-left: 1rem;
+    background-color: #fafbff;
+    border-left: 3px solid #6c757d;
+}
+
+.totals-bar {
+    display: flex;
+    gap: 2rem;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+}
+.totals-item {
+    display: flex;
+    flex-direction: column;
+}
+.totals-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+.totals-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.reduction-summary-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary-color);
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
+.reduction-totals {
+    background-color: #f0f6ff;
+    color: var(--sidebar-bg);
+    margin-top: 0;
+    flex-wrap: wrap;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+.reduction-totals .totals-label {
+    opacity: 1;
+    color: var(--text-secondary-color);
+    font-size: 0.75rem;
+}
+.reduction-totals .totals-value {
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.hint-text {
+    text-align: center;
+    color: var(--text-secondary-color);
+    padding: 2rem;
+    border: 2px dashed var(--border-color);
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+}
+
+.town-street-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.town-street-input-container .form-group {
+    margin-bottom: 0;
+}
+
+
+/* Location Editor styles */
+.location-editor {
+    border: 1px solid #d1d9e2;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-top: 0.5rem;
+    background-color: #f9fafb;
+}
+
+.location-type-selector {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.location-editor .form-group {
+    margin-bottom: 0; /* Override default margin inside the editor */
+}
+
+.location-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.location-inputs > .form-grid {
+    grid-template-columns: 120px 1fr;
+    align-items: flex-end;
+    gap: 0.75rem;
+}
+
+.location-inputs .intersection-grid {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+.location-inputs .intersection-grid > .town-street-input-container {
+    flex: 1;
+}
+.location-inputs .intersection-grid > span {
+    padding-bottom: 0.6rem; /* Align with input fields' vertical center */
+    font-weight: 600;
+}
+
+/* Purpose Section styles */
+.purpose-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.purpose-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #f9fafb;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1.25rem;
+}
+
+@media (max-width: 1024px) {
+    .purpose-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+
+/* --- Collapsible Section Styles --- */
+.collapsible-header {
+    cursor: pointer;
+    user-select: none;
+}
+
+.collapsible-section.collapsed > .collapsible-header {
+    margin-bottom: 0;
+    border-bottom-color: var(--border-color); /* Less prominent border */
+}
+
+.collapse-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    color: var(--primary-color);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.collapse-toggle svg {
+    transition: transform 0.2s ease-in-out;
+}
+
+.collapsible-content {
+    padding-top: 1.5rem;
+}
+
+/* StreetEditor specific collapsible styles */
+.street-header.collapsible-header {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.street-section:not(.collapsed) > .street-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.street-section .collapsible-content {
+    padding-top: 0;
+}
+
+.street-header .collapse-toggle {
+    margin-right: 0.5rem;
+}
+
+/* --- Collapsible Group (Segment/Service/Meter) --- */
+.group-title-actions.collapsible-header {
+    cursor: pointer;
+    user-select: none;
+}
+.collapsible-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-grow: 1;
+}
+.collapsible-group.collapsed > .collapsible-header {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+.collapsible-group .collapsible-content {
+    padding-top: 1rem;
+}
+
+/* --- Unified Collapse Icon Rotation --- */
+/* Default state is collapsed ( > icon, no rotation). When expanded, rotate to a (v) icon. */
+.collapsible-section:not(.collapsed) .collapse-toggle svg,
+.street-section:not(.collapsed) .collapse-toggle svg,
+.collapsible-group:not(.collapsed) .collapse-toggle svg {
+    transform: rotate(90deg);
+}
+
+
+/* --- Advanced Leak Detection Section --- */
+.advanced-leak-detection-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+    background-color: #f9fafb;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.checkbox-group-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.checkbox-group-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.checkbox-group-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: 1rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-top: 0.25rem; /* Align with first line of text */
+    flex-shrink: 0;
+}
